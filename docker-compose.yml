@@ -11,6 +11,9 @@ services:
     build: ./backend
     networks:
       - my_network
+    depends_on:
+      mongo-produkt-catalog-service:
+        condition: service_healthy
 
   prometheus-produkt-catalog-service:
     image: prom/prometheus:latest
@@ -24,8 +27,16 @@ services:
   mongo-produkt-catalog-service:
     image: mongo
     restart: always
+    networks:
+      - my_network
     volumes:
-      - ./data-vol:/data/db
+      - ./mongo-data:/data/db
+    healthcheck:
+      test: echo 'mongo-produkt-catalog-service.runCommand("ping").ok' | mongosh mongo-produkt-catalog-service:27017 --quiet
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 40s
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -34,8 +45,13 @@ services:
     image: mongo-express
     restart: always
     ports:
-      - 8084:8081
+      - 8082:8081
+    networks:
+      - my_network
+    depends_on:
+      mongo-produkt-catalog-service:
+        condition: service_healthy
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017//#
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo-produkt-catalog-service:27017/
