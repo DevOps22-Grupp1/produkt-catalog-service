@@ -19,7 +19,7 @@ services:
     networks:
       - my_network
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus.yml:/etc/prometheus/prometheus.yaml
 
   mongo-produkt-catalog-service:
     image: mongo
