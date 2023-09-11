@@ -9,12 +9,12 @@ volumes:
   mongo-data:
 
 services:
-  home-page-service:
+  user-management-service:
     build: ./backend
     networks:
       - my_network
     ports:
-      - "5002:5002"
+      - "5003:5002"
     depends_on:
       mongo:
         condition: service_healthy
@@ -26,6 +26,7 @@ services:
       - my_network
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yaml
+
 
   mongo:
     image: mongo
@@ -50,7 +51,7 @@ services:
     image: mongo-express
     restart: always
     ports:
-      - 8081:8081
+      - 8084:8081
     networks:
       - my_network
     depends_on:
