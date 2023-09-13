@@ -9,7 +9,7 @@ volumes:
   mongo-data:
 
 services:
-  user-management-service:
+  product-catalog-service:
     build: ./backend
     networks:
       - my_network
@@ -26,7 +26,6 @@ services:
       - my_network
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yaml
-
 
   mongo:
     image: mongo
@@ -45,7 +44,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: testdb
+      MONGO_INITDB_DATABASE: allProducts
 
   mongo-express:
     image: mongo-express
