@@ -3,7 +3,7 @@
 
 **Medlemmar i grupp 1 med github alias:** 
 - Jarl | alias: webcrunch
-- Max | alias:
+- Max | alias: Svenpaj
 - Dennis | alias: DennisNevback
 - Zohreh | alias: Zoritta
 - Harisha | alias: Harisha7
