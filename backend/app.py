@@ -17,7 +17,7 @@ query = db.products
 
 @app.route('/')
 def hello_world():
-    return 'Hello, this is product catalog service'
+    return "Success", 200, {"Access-Control-Allow-Origin": "*"}
 
 @app.route('/api/products', methods=['GET'])
 def get_all_products():
