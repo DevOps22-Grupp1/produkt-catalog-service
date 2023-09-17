@@ -24,7 +24,7 @@ def get_all_products():
     data = []
     todos = query.find()
     for doc in todos:
-        doc['_id'] = str(doc['_id'])  # This does the trick! to what sais everyone else. 
+        doc['_id'] = str(doc['_id'])  # This does the trick! to what? says everyone else. 
         data.append(doc)
     return jsonify(data)
 
