@@ -4,9 +4,7 @@ import pymongo
 from pymongo import MongoClient
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
-# db_client = PyMongo(
-#     app, uri="mongodb://root:example@mongo:27017/allProducts")
-# db = mongodb_client.db
+
 client = MongoClient('mongo', 27017, username='root', password='example')
 
 db = client.allProducts

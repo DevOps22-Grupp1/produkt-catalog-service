@@ -52,48 +52,79 @@ db.products.insertMany([
     price: 2099.99,
     image:
       "https://static.nike.com/a/images/t_default/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/e7c73107-7997-4d09-8893-04158b0e7757/air-jordan-1-retro-high-og-shoes-lZQrDX.png",
-    },
-    {
-        id: 7,
-        order: "Nike Air Max 90",
-        price: 1299.99,
-        image: "https://static.nike.com/a/images/t_default/6a6b1d1e-1b7a-4b1e-8b1a-5b1b1d1b1b1e/air-max-90-shoe-2XjXqz.png",
-    },
-    {
-        id: 8,
-        order: "LG C2 65 OLED",
-        price: 3999.99,
-        image: "https://www.lg.com/se/images/tv/md07519296/gallery/medium01.jpg",
-    },
-    {
-        id: 9,
-        order: "Samsung QN90A Neo QLED",
-        price: 4999.99,
-        image: "https://www.samsung.com/se/tvs/qled-tv/highlights/images/qn90a-features-01.jpg",
-    },
-    {
-        id: 10,
-        order: "Sony XBR-65A9G",
-        price: 5999.99,
-        image: "https://www.sony.se/image/7b8b7f3b3b0d0b0d0b0d0b0d0b0d0b0d?fmt=pjpeg&wid=330&bgcolor=FFFFFF&bgc=FFFFFF",
-    },
-    {
-        id: 11,
-        order: "RedBull",
-        price: 19.99,
-        image: "https://www.redbull.com/se-sv/energydrink/v3/resources/redbull.com/redbull.com-share-image.jpg",
-    },
-    {
-        id: 12,
-        order: "Monster",
-        price: 14.99,
-        image: "https://www.monsterenergy.com/media/uploads_image/2020/01/28/5e2f5b5c5c6a2_1000_1000.jpg",
-    },
-    {
-        id: 13,
-        order: "Celsius",
-        price: 12.99,
-        image: "https://www.celsius.se/wp-content/uploads/2019/10/celsius-heat-2.jpg",
-    }
-
+  },
+  {
+    id: 7,
+    order: "Nike Air Max 90",
+    price: 1299.99,
+    image:
+      "https://de.kicksmaniac.com/zdjecia/2019/02/20/302/26/NIKE_AIR_MAX_90_ESSENTIAL_WOLF_GREY-mini.jpg",
+  },
+  {
+    id: 8,
+    order: "LG C2 65 OLED",
+    price: 3999.99,
+    image:
+      "https://www.lg.com/se/images/TV/features/OLED2022/OLEDC2/TV-OLED-C2-02-intro-Mobile-v2.jpg",
+  },
+  {
+    id: 9,
+    order: "Samsung QN90A Neo QLED",
+    price: 4999.99,
+    image:
+      "https://reviewed-com-res.cloudinary.com/image/fetch/s--df1p37wd--/b_white,c_limit,cs_srgb,f_auto,fl_progressive.strip_profile,g_center,h_668,q_auto,w_1187/https://reviewed-production.s3.amazonaws.com/1616592529737/Samsung-QN90A-8.jpg",
+  },
+  {
+    id: 10,
+    order: "Sony XBR-65A9G",
+    price: 5999.99,
+    image:
+      "https://m.media-amazon.com/images/I/61baGFdOXfL._AC_UF1000,1000_QL80_.jpg",
+  },
+  {
+    id: 11,
+    order: "RedBull",
+    price: 19.99,
+    image:
+      "https://media.istockphoto.com/id/458735615/sv/foto/red-bull-can-in-ice.jpg?s=612x612&w=0&k=20&c=HmCogPnrPjsHW1g93HQs59p_uru_hBXK8D04DnaC3OM=",
+  },
+  {
+    id: 12,
+    order: "Monster",
+    price: 14.99,
+    image:
+      "https://web-assests.monsterenergy.com/mnst/7649c44a-aba5-49d6-860d-5156833adc86.png",
+  },
+  {
+    id: 13,
+    order: "Celsius",
+    price: 12.99,
+    image: "https://m.media-amazon.com/images/I/8188PGnPg0L.jpg",
+  },
+  {
+    id: 14,
+    order: "Great Northern Popcorn Popcornmaskin Little Bambino",
+    price: 14.99,
+    image: "https://www.hembiobutiken.se/images/prod/192760_2.jpg",
+  },
+  {
+    id: 15,
+    order: "Epson EH-TW9400",
+    price: 2699.99,
+    image: "https://www.hembiobutiken.se/images/prod/286610_2.jpg",
+  },
+  {
+    id: 16,
+    order: "Triangle Antal 40th Anniversary",
+    price: 3599.99,
+    image:
+      "https://www.hembiobutiken.se/images/prod/325100-triangle-antal-40th-anniversary-902_2.jpg",
+  },
+  {
+    id: 17,
+    order: "Devialet Dione Opéra de Paris",
+    price: 3190.99,
+    image:
+      "https://www.hembiobutiken.se/images/prod/358940-devialet-dione-opera-de-paris-847.jpg_2.jpg",
+  },
 ]);
