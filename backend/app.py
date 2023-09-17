@@ -42,15 +42,16 @@ def get_single_product(product_id):
 @app.route('/api/product', methods=['POST'])
 def post_products():
     data = json.loads(request.data)
-    data["id"] = increment_post()
+    data["id"] = int(increment_post())
     query.insert_one(data)
-    return f"a new post has been added"
+    return "a new post has been added", 201, {"Access-Control-Allow-Origin": "*"}
 
 
 @app.route('/api/product/<product_id>', methods=['DELETE'])
 def delete_products(product_id):
+    print(product_id)
     query.delete_one({"id": int(product_id)})
-    return f"delete the post from the database"
+    return "The post is deleted", 204, {"Access-Control-Allow-Origin": "*"}
 
 @app.route('/api/product/<product_id>', methods=['PUT'])
 def update_products(product_id):
@@ -61,7 +62,8 @@ def update_products(product_id):
 
 
 def increment_post():
-    return str(query.count_documents({}))
+    id_fetch = query.find_one(sort=[("id", pymongo.DESCENDING)])
+    return str(id_fetch["id"]+1)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=4005, debug=True)
