@@ -21,7 +21,7 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
       - name: Build the Docker image
-        run: docker build  -t passwordnotsafe/produkt-catalog-service:1.0.0 ./backend
+        run: docker build  -t passwordnotsafe/pcs:1.0.0 ./backend
 
       - name: Docker Push
         run: docker push ${{secrets.DOCKER_USERNAME}}/produkt-catalog-service
