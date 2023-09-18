@@ -25,5 +25,5 @@ jobs:
         run: |
           # Specify the target Docker Hub repository using an environment variable
           DOCKER_REPO=passwordnotsafe/produkt-catalog-service
-          docker tag my-docker-image:latest $DOCKER_REPO:latest
+          docker tag produkt-catalog-service_user-management-service:latest $DOCKER_REPO:latest
           docker push $DOCKER_REPO:latest
