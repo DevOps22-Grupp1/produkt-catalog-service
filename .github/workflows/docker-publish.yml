@@ -22,7 +22,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t passwordnotsafe/psc:1.0.0 ./backend
+          docker build -t passwordnotsafe/produkt-catalog-service:master ./backend
 
       - name: Push Docker Image
         run: |
