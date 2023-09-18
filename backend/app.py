@@ -64,4 +64,4 @@ def increment_post():
     return str(id_fetch["id"]+1)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=4005, debug=True)
+    app.run(host="0.0.0.0", port=4005, debug=False)
