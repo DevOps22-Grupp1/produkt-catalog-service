@@ -3,7 +3,7 @@ name: Docker Publish
 on:
   push:
     branches:
-      - main # Adjust this branch name as needed
+      - 10-test-github-action-building-docker-image-and-publish # Adjust this branch name as needed
 
 jobs:
   build-and-publish:
