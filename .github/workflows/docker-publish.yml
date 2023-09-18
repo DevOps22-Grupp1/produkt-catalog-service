@@ -26,4 +26,4 @@ jobs:
 
       - name: Push Docker Image
         run: |
-          docker push passwordnotsafe/psc:1.0.0
+          docker push passwordnotsafe/produkt-catalog-service:master
