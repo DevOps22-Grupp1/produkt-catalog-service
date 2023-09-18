@@ -1,4 +1,4 @@
-name: Docker Publish
+name: Docker Image CI
 
 on:
   push:
@@ -6,24 +6,20 @@ on:
       - 10-test-github-action-building-docker-image-and-publish
 
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - users: actions/checkout@2
+      - name: docker login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD}}
 
-      - name: Log in to Docker Hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build and tag Docker Compose services
         run: |
-          docker-compose -f docker-compose.yml build
-          docker-compose -f docker-compose.yml push
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag passwordnotsafe/product-servce:1.0.0
 
-      - name: Deploy to Docker Hub
-        run: |
-          # Specify the target Docker Hub repository using an environment variable
-          DOCKER_REPO=passwordnotsafe/produkt-catalog-service
-          docker tag produkt-catalog-service_user-management-service:latest $DOCKER_REPO:latest
-          docker push $DOCKER_REPO:latest
+      - name: Docker Push
+        run: docker push ${{secrets.DOCKER_USERNAME}}/produkt-catalog-service
