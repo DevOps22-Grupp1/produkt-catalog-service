@@ -12,15 +12,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: docker login
+
+      - name: Docker Login
         env:
           DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD}}
-
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
       - name: Build the Docker image
-        run: docker build . --file .b/backend/Dockerfile --tag passwordnotsafe/product-servce:1.0.0
+        run: docker build  -t passwordnotsafe/product-service:1.0.0 ./backend
 
       - name: Docker Push
-        run: docker push ${{secrets.DOCKER_USERNAME}}/produkt-catalog-service
+        run: docker push $DOCKER_USER/product-service:1.0.0
