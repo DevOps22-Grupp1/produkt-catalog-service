@@ -1,68 +1,54 @@
-name: scamazon
-services:
-  mongo:
-    environment:
-      MONGO_INITDB_DATABASE: testdb
-      MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_ROOT_USERNAME: root
-    healthcheck:
-      test:
-        - CMD-SHELL
-        - echo 'mongo.runCommand("ping").ok' | mongosh mongo:27017 --quiet
-      timeout: 5s
-      interval: 20s
-      retries: 20
-      start_period: 3m20s
-    image: mongo
-    networks:
-      my_network: null
-    restart: always
-    volumes:
-      - type: bind
-        source: C:\Users\Owner\source\grupp1-mov\produkt-catalog-service\mongo-data
-        target: /data/db
-        bind:
-          create_host_path: true
-      - type: bind
-        source: C:\Users\Owner\source\grupp1-mov\produkt-catalog-service\init\init-mongo.js
-        target: /docker-entrypoint-initdb.d/init-mongo.js
-        read_only: true
-        bind:
-          create_host_path: true
-  mongo-express:
-    depends_on:
-      mongo:
-        condition: service_healthy
-        required: true
-    environment:
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
-    image: mongo-express
-    networks:
-      my_network: null
-    ports:
-      - mode: ingress
-        target: 8081
-        published: "8084"
-        protocol: tcp
-    restart: always
-  user-management-service:
-    build:
-      context: C:\Users\Owner\source\grupp1-mov\produkt-catalog-service\backend
-      dockerfile: Dockerfile
-    depends_on:
-      mongo:
-        condition: service_healthy
-        required: true
-    networks:
-      my_network: null
-    ports:
-      - mode: ingress
-        target: 5002
-        published: "5003"
-        protocol: tcp
+version: "3"
+# name: "scamazon"
+
 networks:
   my_network:
-    name: scamazon_my_network
     driver: bridge
+
+volumes:
+  mongo-data:
+
+services:
+  user-management-service:
+    build: ./backend
+    networks:
+      - my_network
+    ports:
+      - "5003:5002"
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  mongo:
+    image: mongo
+    restart: always
+    networks:
+      - my_network
+    volumes:
+      - ./mongo-data:/data/db
+      - ./init/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    healthcheck:
+      test: echo 'mongo.runCommand("ping").ok' | mongosh mongo:27017 --quiet
+      interval: 20s
+      timeout: 5s
+      retries: 20
+      start_period: 200s
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: testdb
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8084:8081
+    networks:
+      - my_network
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
