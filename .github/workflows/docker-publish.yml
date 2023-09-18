@@ -6,17 +6,24 @@ on:
       - 10-test-github-action-building-docker-image-and-publish
 
 jobs:
-  build-and-publish:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Login to Docker Hub
+      - name: Log in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and tag Docker Compose Service
+      - name: Build and tag Docker Compose services
         run: |
           docker-compose -f docker-compose.yml build
           docker-compose -f docker-compose.yml push
+
+      - name: Deploy to Docker Hub
+        run: |
+          # Specify the target Docker Hub repository using an environment variable
+          DOCKER_REPO=passwordnotsafe/produkt-catalog-service
+          docker tag my-docker-image:latest $DOCKER_REPO:latest
+          docker push $DOCKER_REPO:latest
