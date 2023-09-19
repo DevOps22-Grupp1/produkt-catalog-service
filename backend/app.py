@@ -5,7 +5,7 @@ from pymongo import MongoClient
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
 
-client = MongoClient('mongo', 27017, username='root', password='example')
+client = MongoClient('mongo-1', 27017, username='root', password='example')
 
 db = client.allProducts
 query = db.products
