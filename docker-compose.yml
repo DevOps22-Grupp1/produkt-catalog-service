@@ -10,7 +10,8 @@ volumes:
 
 services:
   product-catalog-service:
-    build: ./backend
+    # build: ./backend
+    image: passwordnotsafe/produkt-catalog-service
     networks:
       - my_network
     # ports:
