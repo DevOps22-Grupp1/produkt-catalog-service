@@ -21,6 +21,8 @@ services:
         condition: service_healthy
     environment:
       - DB_PORT=4005
+      - DB_USERNAME=root
+      - DB_PASSWORD=example
 
   mongo:
     image: mongo

@@ -3,12 +3,16 @@ from prometheus_flask_exporter import PrometheusMetrics
 import pymongo
 import os
 from pymongo import MongoClient
+
+db_port = os.environ.get("DB_PORT")
+db_username = os.environ.get("DB_USERNAME")
+db_password = os.environ.get("DB_PASSWORD")
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
 # db_client = PyMongo(
 #     app, uri="mongodb://root:example@mongo:27017/allProducts")
 # db = mongodb_client.db
-client = MongoClient('mongo', 27017, username='root', password='example')
+client = MongoClient('mongo', 27017, username=db_username, password=db_password)
 db_port = os.environ.get("DB_PORT")
 
 db = client.allProducts
