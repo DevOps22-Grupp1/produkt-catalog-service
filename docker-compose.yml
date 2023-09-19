@@ -10,12 +10,12 @@ volumes:
 
 services:
   product-catalog-service:
-    # build: ./backend
-    image: passwordnotsafe/produkt-catalog-service
+    build: ./backend
+    # image: passwordnotsafe/produkt-catalog-service:master
     networks:
       - my_network
-    # ports:
-    #   - "4005:4005"
+    ports:
+      - "4005:4005"
     depends_on:
       mongo:
         condition: service_healthy
