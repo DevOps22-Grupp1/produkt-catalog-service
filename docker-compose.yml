@@ -19,6 +19,8 @@ services:
     depends_on:
       mongo:
         condition: service_healthy
+    environment:
+      - DB_PORT=4005
 
   mongo:
     image: mongo
