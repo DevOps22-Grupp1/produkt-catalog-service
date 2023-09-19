@@ -1,9 +1,9 @@
 name: Docker Build and Push
 
 on:
-  push:
+  pull_request:
     branches:
-      - 10-test-github-action-building-docker-image-and-publish
+      - main
 
 jobs:
   build:

@@ -1,5 +1,5 @@
 version: "3"
-# name: "scamazon"
+name: "scamazon"
 
 networks:
   my_network:
@@ -9,13 +9,13 @@ volumes:
   mongo-data:
 
 services:
-  user-management-service:
-    # build: ./backend
-    image: passwordnotsafe/produkt-catalog-service
+  product-catalog-service:
+    build: ./backend
+    # image: passwordnotsafe/produkt-catalog-service:master
     networks:
       - my_network
     ports:
-      - "5003:5002"
+      - "4005:4005"
     depends_on:
       mongo:
         condition: service_healthy
@@ -27,17 +27,17 @@ services:
       - my_network
     volumes:
       - ./mongo-data:/data/db
-      - ./init/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./init/init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     healthcheck:
       test: echo 'mongo.runCommand("ping").ok' | mongosh mongo:27017 --quiet
-      interval: 20s
+      interval: 5s
       timeout: 5s
       retries: 20
       start_period: 200s
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: testdb
+      MONGO_INITDB_DATABASE: allProducts
 
   mongo-express:
     image: mongo-express
