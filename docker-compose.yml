@@ -43,7 +43,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
       MONGO_INITDB_DATABASE: allProducts
 
-  mongo-express:
+  mongo-express-product-catalog-service:
     image: mongo-express
     restart: always
     ports:
@@ -56,4 +56,4 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo-product-catalog-service:27017/
