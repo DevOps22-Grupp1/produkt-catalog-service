@@ -12,7 +12,8 @@ metrics = PrometheusMetrics(app)
 # db_client = PyMongo(
 #     app, uri="mongodb://root:example@mongo:27017/allProducts")
 # db = mongodb_client.db
-client = MongoClient('mongo', 27017, username=db_username, password=db_password)
+client = MongoClient('mongo-product-catalog-service', 27017,
+                     username=db_username, password=db_password)
 db_port = os.environ.get("DB_PORT")
 
 db = client.allProducts
