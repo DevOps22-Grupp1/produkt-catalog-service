@@ -5,7 +5,7 @@ import os
 from pymongo import MongoClient
 
 #environment variables 
-db_port = os.environ.get("DB_PORT")
+server_port = os.environ.get("SERVER_PORT")
 db_username = os.environ.get("DB_USERNAME")
 db_password = os.environ.get("DB_PASSWORD")
 host = os.environ.get("DB_HOST")
@@ -13,7 +13,7 @@ db_port = os.environ.get("DB_PORT")
 
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
-client = MongoClient(host, 27017,
+client = MongoClient(host, int(db_port),
                      username=db_username, password=db_password)
 
 
@@ -74,4 +74,4 @@ def increment_post():
     return str(id_fetch["id"]+1)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=db_port, debug=False)
+    app.run(host="0.0.0.0", port=server_port, debug=False)

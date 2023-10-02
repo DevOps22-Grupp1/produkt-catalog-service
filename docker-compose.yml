@@ -20,10 +20,11 @@ services:
       mongo-product-catalog-service:
         condition: service_healthy
     environment:
-      - DB_PORT=4005
+      - SERVER_PORT=4005
       - DB_USERNAME=root
       - DB_PASSWORD=example
       - DB_HOST=mongo-product-catalog-service
+      - DB_PORT=27017
 
   mongo-product-catalog-service:
     image: mongo
