@@ -64,14 +64,15 @@ def delete_products(product_id):
 @app.route('/api/product/<product_id>', methods=['PUT'])
 def update_products(product_id):
     data = json.loads(request.data)
-    data["id"] = product_id
-    query.find_one_and_update({'id': int(product_id)} , {'$set': data})
-    return f"update the post from the database"
+    data["id"] = int(product_id)
+    query.update_one({'id': int(product_id)}, {'$set': data})
+    # query.find_one_and_update({'id': int(product_id)} , {'$set': data})
+    return f"update the post from the database", 200, {"Access-Control-Allow-Origin": "*"}
 
 
 def increment_post():
-    id_fetch = query.find_one(sort=[("id", pymongo.DESCENDING)])
-    return str(id_fetch["id"]+1)
+   id_fetch = query.find_one(sort=[("id", pymongo.DESCENDING)])
+   return str(id_fetch["id"]+1)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=server_port, debug=False)
