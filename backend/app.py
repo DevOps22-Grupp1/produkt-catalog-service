@@ -4,7 +4,7 @@ import pymongo
 import os
 from pymongo import MongoClient
 
-#environment variables 
+# environment variables
 server_port = os.environ.get("SERVER_PORT")
 db_username = os.environ.get("DB_USERNAME")
 db_password = os.environ.get("DB_PASSWORD")
@@ -13,41 +13,49 @@ db_port = os.environ.get("DB_PORT")
 
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
-client = MongoClient(host, int(db_port),
-                     username=db_username, password=db_password)
+client = MongoClient(host, int(db_port), username=db_username, password=db_password)
 
 
 db = client.allProducts
 query = db.products
 
 
-
-
-@app.route('/')
+@app.route("/")
 def hello_world():
     return "Success", 200, {"Access-Control-Allow-Origin": "*"}
 
-@app.route('/api/products', methods=['GET'])
+
+@app.route("/api/products", methods=["GET"])
 def get_all_products():
     data = []
     todos = query.find()
     for doc in todos:
-        doc['_id'] = str(doc['_id'])  # This does the trick! to what sais everyone else. 
+        doc["_id"] = str(doc["_id"])  # This does the trick! to what sais everyone else.
         data.append(doc)
     return jsonify(data)
 
 
-@app.route('/api/product/<product_id>', methods=['GET'])
+@app.route("/api/product_category/<category>", methods=["GET"])
+def get_all_product_categories(category):
+    data = []
+    todos = query.find({"category": category})
+    for doc in todos:
+        doc["_id"] = str(doc["_id"])  # This does the trick! to what sais everyone else.
+        data.append(doc)
+    return jsonify(data)
+
+
+@app.route("/api/product/<product_id>", methods=["GET"])
 def get_single_product(product_id):
     data = []
     todos = query.find({"id": int(product_id)})
     for doc in todos:
-        doc['_id'] = str(doc['_id'])  # This does the trick!
+        doc["_id"] = str(doc["_id"])  # This does the trick!
         data.append(doc)
     return jsonify(data)
 
 
-@app.route('/api/product', methods=['POST'])
+@app.route("/api/product", methods=["POST"])
 def post_products():
     data = json.loads(request.data)
     data["id"] = int(increment_post())
@@ -55,24 +63,30 @@ def post_products():
     return "a new post has been added", 201, {"Access-Control-Allow-Origin": "*"}
 
 
-@app.route('/api/product/<product_id>', methods=['DELETE'])
+@app.route("/api/product/<product_id>", methods=["DELETE"])
 def delete_products(product_id):
     print(product_id)
     query.delete_one({"id": int(product_id)})
     return "The post is deleted", 204, {"Access-Control-Allow-Origin": "*"}
 
-@app.route('/api/product/<product_id>', methods=['PUT'])
+
+@app.route("/api/product/<product_id>", methods=["PUT"])
 def update_products(product_id):
     data = json.loads(request.data)
     data["id"] = int(product_id)
-    query.update_one({'id': int(product_id)}, {'$set': data})
+    query.update_one({"id": int(product_id)}, {"$set": data})
     # query.find_one_and_update({'id': int(product_id)} , {'$set': data})
-    return f"update the post from the database", 200, {"Access-Control-Allow-Origin": "*"}
+    return (
+        f"update the post from the database",
+        200,
+        {"Access-Control-Allow-Origin": "*"},
+    )
 
 
 def increment_post():
-   id_fetch = query.find_one(sort=[("id", pymongo.DESCENDING)])
-   return str(id_fetch["id"]+1)
+    id_fetch = query.find_one(sort=[("id", pymongo.DESCENDING)])
+    return str(id_fetch["id"] + 1)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=server_port, debug=False)
