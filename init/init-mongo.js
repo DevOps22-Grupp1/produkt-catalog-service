@@ -115,7 +115,7 @@ db.products.insertMany([
         "order": "Epson EH-TW9400",
         "price": 2699.99,
         "image": "https://actsessory.files.wordpress.com/2021/12/file3lysgbl6-copy.jpg?w=670&h=413",
-        "category": ["projetor"],
+        "category": ["projector"],
     },
     {
         "id": 16,
