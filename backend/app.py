@@ -28,7 +28,7 @@ def hello_world():
 @app.route("/api/products", methods=["GET"])
 def get_all_products():
     data = []
-    todos = query.find()
+    todos = query.find().sort({"category": 1, "order": 1})
     for doc in todos:
         doc["_id"] = str(doc["_id"])  # This does the trick! to what sais everyone else.
         data.append(doc)
@@ -38,7 +38,7 @@ def get_all_products():
 @app.route("/api/product_category/<category>", methods=["GET"])
 def get_all_product_categories(category):
     data = []
-    todos = query.find({"category": category})
+    todos = query.find({"category": category}).sort({"order": 1})
     for doc in todos:
         doc["_id"] = str(doc["_id"])  # This does the trick! to what sais everyone else.
         data.append(doc)
