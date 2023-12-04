@@ -22,14 +22,14 @@ db.products.insertMany([
         "id": 2,
         "order": "Monster",
         "price": 14.99,
-        "image": "https://web-assests.monsterenergy.com/mnst/7649c44a-aba5-49d6-860d-5156833adc86.png",
+        "image": "https://i.pinimg.com/736x/87/36/35/873635abf5f51455f7b105ee2315f40c.jpg",
         "category": ["drinks"],
     },
     {
         "id": 3,
         "order": "Prime Hydration Drink Orange by Logan Paul & KSI",
         "price": 11.41,
-        "image": "https://m.media-amazon.com/images/I/61JpoZopAQL._AC_SX679_.jpg",
+        "image": "https://www.picclickimg.com/i64AAOSwKz1kIXDy/PRIME-HYDRATION-DRINK-Orange-Flavour-KSI.webp",
         "category": ["drinks"]
     },
     {
@@ -99,8 +99,8 @@ db.products.insertMany([
     {
         "id": 13,
         "order": "Apple MacBook Pro space grey",
-        "price": 1.999,
-        "image": "https://i.pinimg.com/736x/8d/19/df/8d19df0f1d0347d9dec351afa2554106.jpg",
+        "price": 1999.99,
+        "image": "https://img2.cgtrader.com/items/3815465/ee734a0696/large/apple-macbook-pro-2021-14-inch-space-gray-3d-model-max-obj-3ds-fbx-c4d-lwo.jpg",
         "category": ["laptop"]
     },
     {
@@ -205,7 +205,7 @@ db.products.insertMany([
         "id": 28,
         "order": "Skyrunner Känguruskor",
         "price": 239.34,
-        "image": "https://m.media-amazon.com/images/I/51-uNLf7F1L._AC_SX679_.jpg",
+        "image": "https://m.media-amazon.com/images/I/61FTkuWktYL._AC_UF1000,1000_QL80_.jpg",
         "category": ["shoes"]
     },
     {

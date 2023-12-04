@@ -38,11 +38,33 @@ def get_all_products():
 @app.route("/api/product_category/<category>", methods=["GET"])
 def get_all_product_categories(category):
     data = []
-    todos = query.find({"category": category}).sort({"order": 1})
-    for doc in todos:
-        doc["_id"] = str(doc["_id"])  # This does the trick! to what sais everyone else.
-        data.append(doc)
-    return jsonify(data)
+    print(category)
+    if "," in category:
+        if category.split(",")[0] == "a-z":
+            priceUpDown = -1
+        else:
+            priceUpDown = 1
+        if category.split(",")[1] == "all":
+            todos = query.find().sort({"price": priceUpDown})
+        else:
+            todos = query.find({"category": category.split(",")[1]}).sort(
+                {"price": priceUpDown}
+            )
+
+        for doc in todos:
+            doc["_id"] = str(
+                doc["_id"]
+            )  # This does the trick! to what sais everyone else.
+            data.append(doc)
+        return jsonify(data)
+    else:
+        todos = query.find({"category": category}).sort({"order": 1})
+        for doc in todos:
+            doc["_id"] = str(
+                doc["_id"]
+            )  # This does the trick! to what sais everyone else.
+            data.append(doc)
+        return jsonify(data)
 
 
 @app.route("/api/product/<product_id>", methods=["GET"])
