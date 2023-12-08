@@ -60,16 +60,16 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo-product-catalog-service:27017/
 
-  minio:
-    image: quay.io/minio/minio:RELEASE.2022-02-18T01-50-10Z
-    volumes:
-      - ./data:/data
-    ports:
-      - 9000:9000
-      - 9001:9001
-    environment:
-      MINIO_ROOT_USER: "minio"
-      MINIO_ROOT_PASSWORD: "minio123"
-      MINIO_ADDRESS: ":9000"
-      MINIO_CONSOLE_ADDRESS: ":9001"
-    command: minio server /data
+  # minio:
+  #   image: quay.io/minio/minio:RELEASE.2022-02-18T01-50-10Z
+  #   volumes:
+  #     - ./data:/data
+  #   ports:
+  #     - 9000:9000
+  #     - 9001:9001
+  #   environment:
+  #     MINIO_ROOT_USER: "minio"
+  #     MINIO_ROOT_PASSWORD: "minio123"
+  #     MINIO_ADDRESS: ":9000"
+  #     MINIO_CONSOLE_ADDRESS: ":9001"
+  #   command: minio server /data
