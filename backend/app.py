@@ -25,6 +25,15 @@ def hello_world():
     return "Success", 200, {"Access-Control-Allow-Origin": "*"}
 
 
+@app.route("/api/count/<category>")
+def count_product(category):
+    if category == "all":
+        count = query.count_documents({})
+    else:
+        count = query.count_documents({"category": category})
+    return jsonify(count), 200, {"Access-Control-Allow-Origin": "*"}
+
+
 @app.route("/api/products", methods=["GET"])
 def get_all_products():
     data = []
@@ -38,7 +47,6 @@ def get_all_products():
 @app.route("/api/product_category/<category>", methods=["GET"])
 def get_all_product_categories(category):
     data = []
-    print(category)
     if "," in category:
         if category.split(",")[0] == "a-z":
             priceUpDown = -1
