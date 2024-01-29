@@ -34,12 +34,22 @@ def count_product(category):
     return jsonify(count), 200, {"Access-Control-Allow-Origin": "*"}
 
 
-@app.route("/api/products", methods=["GET"])
-def get_all_products():
+@app.route("/api/products/<int:page>", methods=["GET"])
+def get_all_products(page):
     data = []
-    todos = query.find().sort({"category": 1, "order": 1})
+    skip = int(9 * (page - 1))
+    print(page)
+    if page == 0:
+        todos = query.find({}, {"_id": 0}).sort({"category": 1, "order": 1})
+    else:
+        todos = (
+            query.find({}, {"_id": 0})
+            .sort({"category": 1, "order": 1})
+            .skip(skip)
+            .limit(9)
+        )
     for doc in todos:
-        doc["_id"] = str(doc["_id"])  # This does the trick! to what sais everyone else.
+        # doc["_id"] = str(doc["_id"])  # This does the trick! to what sais everyone else.
         data.append(doc)
     return jsonify(data)
 
