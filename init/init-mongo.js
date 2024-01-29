@@ -292,4 +292,88 @@ db.products.insertMany([
         "image": "https://www.elgiganten.se/image/dv_web_D1800010021421037/600156/tcl-75-c845-4k-miniled-smart-tv-2023--pdp_zoom-3000--pdp_main-960.jpg",
         "category": ["tv"]
     },
+    {
+        "id": 41,
+        "order": "Acer Predator Orion 3000",
+        "price": 1999.99,
+        "image": "https://www.elgiganten.se/image/dv_web_D1800010021421037/300156/acer-predator-orion-3000-gaming-dator-2023--pdp_zoom-3000--pdp_main-960.jpg",
+        "category": ["computer"]
+    },
+    {
+        "id": 42,
+        "order": "Apple iMac 27' M1 8GB/256GB",
+        "price": 1699.99,
+        "image": "https://www.elgiganten.se/image/dv_web_D1800010021421037/600156/apple-imac-27-m1-8gb-256gb-2023--pdp_zoom-3000--pdp_main-960.jpg",
+        "category": ["computer"]
+    },
+    {
+        "id": 43,
+        "order": "HP Pavilion 15-eg0009no 15.6' bärbar dator",
+        "price": 599.99,
+        "image": "https://www.elgiganten.se/image/dv_web_D1800010021421037/300156/hp-pavilion-15-eg0009no-15-6-barbar-dator-2023--pdp_zoom-3000--pdp_main-960.jpg",
+        "category": ["computer"]
+    },
+    {
+        "id": 44,
+        "order": "Lenovo Legion 5 15IMH05H 15.6' bärbar dator",
+        "price": 999.99,
+        "image": "https://www.elgiganten.se/image/dv_web_D1800010021421037/300156/lenovo-legion-5-15imh05h-15-6-barbar-dator-2023--pdp_zoom-3000--pdp_main-960.jpg",
+        "category": ["computer"]
+    },
+    {
+        "id": 45,
+        "order": "Acer Predator Triton 500",
+        "price": 1999.99,
+        "image": "https://www.elgiganten.se/image/dv_web_D1800010021421037/300156/acer-predator-triton-500-gaming-dator-2023--pdp_zoom-3000--pdp_main-960.jpg",
+        "category": ["computer"]
+    },
+    {
+        "id": 46,
+        "order": "Apple Watch Series 7 41mm",
+        "price": 499.99,
+        "image": "https://www.elgiganten.se/image/dv_web_D1800010021421037/300156/apple-watch-series-7-41mm-2023--pdp_zoom-3000--pdp_main-960.jpg",
+        "category": ["watch"]
+    },
+    {
+        "id": 47,
+        "order": "Fitbit Versa 3",
+        "price": 199.99,
+        "image": "https://www.elgiganten.se/image/dv_web_D1800010021421037/300156/fitbit-versa-3-2023--pdp_zoom-3000--pdp_main-960.jpg",
+        "category": ["watch"]
+    },
+    {
+        "id": 48,
+        "order": "Garmin Venu 2S",
+        "price": 399.99,
+        "image": "https://www.elgiganten.se/image/dv_web_D1800010021421037/300156/garmin-venu-2s-2023--pdp_zoom-3000--pdp_main-960.jpg",
+        "category": ["watch"]
+    },
+    {
+        "id": 49,
+        "order": "Samsung Galaxy Watch4 Classic",
+        "price": 499.99,
+        "image": "https://www.elgiganten.se/image/dv_web_D1800010021421037/300156/samsung-galaxy-watch4-classic-2023--pdp_zoom-3000--pdp_main-960.jpg",
+        "category": ["watch"]
+    },
+    {
+        "id": 50,
+        "order": "Samsung Galaxy Watch4",
+        "price": 399.99,
+        "image": "https://www.elgiganten.se/image/dv_web_D1800010021421037/300156/samsung-galaxy-watch4-2023--pdp_zoom-3000--pdp_main-960.jpg",
+        "category": ["watch"]
+    },
+    {
+        "id": 51,
+        "order": "Apple iPhone 13 Pro 128GB",
+        "price": 999.99,
+        "image": "https://www.elgiganten.se/image/dv_web_D1800010021421037/300156/apple-iphone-13-pro-128gb-2023--pdp_zoom-3000--pdp_main-960.jpg", "category": ["mobile"]
+    },
+    {
+        "id": 52,
+        "order": "Crecent 24' 7-växlad",
+        "price": 399.99,
+        "image": "https://www.elgiganten.se/image/dv_web_D1800010021421037/300156/crecent-24-7-vaxlad-2023--pdp_zoom-3000--pdp_main-960.jpg",
+        "category": ["bike"]
+    },
+    
 ]);
