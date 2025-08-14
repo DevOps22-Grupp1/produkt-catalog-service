@@ -34,6 +34,7 @@ def count_product(category):
     return jsonify(count), 200, {"Access-Control-Allow-Origin": "*"}
 
 
+@app.route("/api/products", defaults={"page": 0}, methods=["GET"])
 @app.route("/api/products/<int:page>", methods=["GET"])
 def get_all_products(page):
     data = []
