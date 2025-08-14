@@ -90,7 +90,7 @@
 name: Docker Build and Push
 
 on:
-  pull_request:
+  push:
     branches:
       - 11-environment-paramates-to-backend-file
       - main
