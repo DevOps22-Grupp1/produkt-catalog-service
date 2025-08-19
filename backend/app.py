@@ -21,12 +21,12 @@ query = db.products
 
 
 @app.route("/")
-def hello_world():
+def hello_world() -> tuple:
     return "Success", 200, {"Access-Control-Allow-Origin": "*"}
 
 
 @app.route("/api/count/<category>")
-def count_product(category):
+def count_product(category: str) -> tuple:
     if category == "all":
         count = query.count_documents({})
     else:
@@ -36,7 +36,7 @@ def count_product(category):
 
 @app.route("/api/products", defaults={"page": 0}, methods=["GET"])
 @app.route("/api/products/<int:page>", methods=["GET"])
-def get_all_products(page):
+def get_all_products(page: int) -> tuple:
     data = []
     skip = int(9 * (page - 1))
     print(page)
@@ -56,7 +56,7 @@ def get_all_products(page):
 
 
 @app.route("/api/product_category/<category>", methods=["GET"])
-def get_all_product_categories(category):
+def get_all_product_categories(category: str) -> tuple:
     data = []
     if "," in category:
         if category.split(",")[0] == "a-z":
@@ -87,7 +87,7 @@ def get_all_product_categories(category):
 
 
 @app.route("/api/product/<product_id>", methods=["GET"])
-def get_single_product(product_id):
+def get_single_product(product_id: str) -> tuple:
     data = []
     todos = query.find({"id": int(product_id)})
     for doc in todos:
@@ -97,7 +97,7 @@ def get_single_product(product_id):
 
 
 @app.route("/api/product", methods=["POST"])
-def post_products():
+def post_products() -> tuple:
     data = json.loads(request.data)
     data["id"] = int(increment_post())
     query.insert_one(data)
@@ -105,14 +105,14 @@ def post_products():
 
 
 @app.route("/api/product/<product_id>", methods=["DELETE"])
-def delete_products(product_id):
+def delete_products(product_id: str) -> tuple:
     print(product_id)
     query.delete_one({"id": int(product_id)})
     return "The post is deleted", 204, {"Access-Control-Allow-Origin": "*"}
 
 
 @app.route("/api/product/<product_id>", methods=["PUT"])
-def update_products(product_id):
+def update_products(product_id: str) -> tuple:
     data = json.loads(request.data)
     data["id"] = int(product_id)
     query.update_one({"id": int(product_id)}, {"$set": data})
@@ -124,7 +124,7 @@ def update_products(product_id):
     )
 
 
-def increment_post():
+def increment_post() -> str:
     id_fetch = query.find_one(sort=[("id", pymongo.DESCENDING)])
     return str(id_fetch["id"] + 1)
 
