@@ -13,7 +13,11 @@ db_port = os.environ.get("DB_PORT")
 
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
-MONGO_URI = f"mongodb://{db_username}:{db_password}@{host}:{db_port}/?authSource=admin"
+db_name = "allProducts"
+
+MONGO_URI = (
+    f"mongodb://{db_username}:{db_password}@{host}:{db_port}/{db_name}?authSource=admin"
+)
 client = MongoClient(MONGO_URI)
 
 
